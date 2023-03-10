@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-Alx low level programming in c
-=======
-This is for loops and while statements
->>>>>>> 4e4dc5d5086936690bec18b5272f25e122739873
+This ia my readme me file, 
