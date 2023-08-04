@@ -1,11 +1,11 @@
 #include "main.h"
 
-unsigned int binary_to_uint(const char *b) 
+unsigned int binary_to_uint(const char *b)
 {
 /* Check if the input is NULL. */
 	if (b == NULL)
 	{
-		return( 0);
+		return (0);
 	}
  /* Initialize the result. */
 	unsigned int result = 0;
@@ -16,7 +16,7 @@ unsigned int binary_to_uint(const char *b)
     /* Check if the digit is valid. */
 		if (b[i] != '0' && b[i] != '1')
 		{
-			return( 0);
+			return (0);
 		}
 
     /* Add the digit to the result. */
