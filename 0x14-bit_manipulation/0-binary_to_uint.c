@@ -5,30 +5,33 @@
  * @b: binary
  * Return: unsigned int
  */
-
 unsigned int binary_to_uint(const char *b)
 {
-/* Check if the input is NULL. */
+
+	int len = 0, i;
+	unsigned int sum = 0;
+
 	if (b == NULL)
-	{
-		return (0);
-	}
- /* Initialize the result. */
-	unsigned int result = 0;
+		return (sum);
 
-  /* Iterate over the input string, adding each digit to the result. */
-	for (int i = 0; b[i] != '\0'; i++)
-	{
-    /* Check if the digit is valid. */
-		if (b[i] != '0' && b[i] != '1')
-		{
-			return (0);
-		}
+	/* find string length */
+	while (b[len] != '\0')
+		len++;
+	len -= 1;
 
-    /* Add the digit to the result. */
-		result += (unsigned int)(b[i] - '0') << (i);
+	/* iterate string and if '1' then multiply by power of 2 */
+	/* get power of 2 via binary (e.g. 1<<2 = 100 in binary = 4) */
+	i = 0;
+	while (b[i])
+	{
+		if ((b[i] != '0') && (b[i] != '1'))
+			return (sum);
+
+		if (b[i] == '1')
+			sum += (1 * (1 << len));
+		i++;
+		len--;
 	}
-  /* Return the result. */
-	return (result);
+
+	return (sum);
 }
-
