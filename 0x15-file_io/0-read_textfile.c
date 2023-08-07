@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * read_textfile - read a certain size and prints to std output
@@ -11,32 +9,42 @@
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
+	int fd; /* file descriptor */
+	ssize_t n_read, n_wrote;
+	char *buffer;
+
 	if (filename == NULL)
+		return (0);
+
+	/* open */
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (0);
+
+	/* malloc buffer */
+	buffer = malloc(sizeof(char) * letters);
+	if (buffer == NULL)
+		return (0);
+
+	/* read */
+	n_read = read(fd, buffer, letters);
+	if (n_read == -1)
 	{
+		free(buffer);
+		close(fd);
 		return (0);
 	}
 
-	FILE *fp = fopen(filename, "r");
-
-	if (fp == NULL)
+	/* write */
+	n_wrote = write(STDOUT_FILENO, buffer, n_read);
+	if (n_wrote == -1)
 	{
+		free(buffer);
+		close(fd);
 		return (0);
 	}
 
-	char buffer[letters];
+	close(fd);
+	return (n_read);
 
-	size_t bytes_read = fread(buffer, 1, letters, fp);
-
-	if (bytes_read == 0)
-	{
-		return (0);
-	}
-
-	int ret = write(STDOUT_FILENO, buffer, bytes_read);
-
-	if (ret != bytes_read)
-	{
-		return (0);
-	}
-	return (bytes_read);
 }
