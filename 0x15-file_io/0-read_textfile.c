@@ -9,25 +9,31 @@
  * Return: actual size read and printed
  */
 
-ssize_t read_textfile(const char *filename, size_t letters) 
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-	if (filename == NULL) 
+	if (filename == NULL)
 	{
 		return (0);
 	}
+
 	FILE *fp = fopen(filename, "r");
-	if (fp == NULL) 
+
+	if (fp == NULL)
 	{
 		return (0);
 	}
+
 	char buffer[letters];
+
 	size_t bytes_read = fread(buffer, 1, letters, fp);
-	if (bytes_read == 0) 
+	if (bytes_read == 0)
 	{
 		return (0);
 	}
+
 	int ret = write(STDOUT_FILENO, buffer, bytes_read);
-	if (ret != bytes_read) 
+
+	if (ret != bytes_read)
 	{
 		return (0);
 	}
