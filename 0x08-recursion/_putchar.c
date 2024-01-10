@@ -9,6 +9,6 @@
 int _putchar(char c)
 {
     /*Directly return the result of write() for clarity and efficiency*/
-    return write(STDOUT_FILENO, &c, 1);
+	return (write(STDOUT_FILENO, &c, 1));
 }
 
